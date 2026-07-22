@@ -1,3 +1,6 @@
+from typing import Any
+
+
 class Range:
     def __init__(self, start: int, end: int) -> None:
         self.__start = start
@@ -40,6 +43,17 @@ class Range:
             return [Range(left_range.__start, max(left_range.__end, right_range.__end))]
         else:
             return [Range(left_range.__start, left_range.__end), Range(right_range.start, right_range.__end)]
+
+    def difference(self, second_range: Range) -> list[Range] | None:
+        difference_range = []
+
+        if self.__start < second_range.start:
+            difference_range.append(Range(self.__start, min(self.__end, second_range.start)))
+
+        if self.__end > second_range.end:
+            difference_range.append(Range(max(self.__start, second_range.end), self.__end))
+
+        return difference_range
 
     def __str__(self) -> str:
         return f"[{self.__start}, {self.__end}]"

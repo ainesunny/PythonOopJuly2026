@@ -29,3 +29,7 @@ else:
 union_range = user_range_1.union(user_range_2)
 
 print(f"Объединенный интервал из двух указанных диапазонов {[str(element) for element in union_range]}")
+
+difference_range = user_range_1.difference(user_range_2)
+
+print(f"Разность указанных диапазонов (из первого вычитается второй) {[str(element) for element in difference_range]}")

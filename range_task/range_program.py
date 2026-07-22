@@ -32,4 +32,7 @@ print(f"Объединенный интервал из двух указанны
 
 difference_range = user_range_1.difference(user_range_2)
 
-print(f"Разность указанных диапазонов (из первого вычитается второй) {[str(element) for element in difference_range]}")
+if isinstance(difference_range, int):
+    print(f"Разность диапазонов (из первого вычитается второй) {difference_range}")
+else:
+    print(f"Разность диапазонов (из первого вычитается второй) {[str(element) for element in difference_range]}")

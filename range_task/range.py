@@ -44,7 +44,10 @@ class Range:
         else:
             return [Range(left_range.__start, left_range.__end), Range(right_range.start, right_range.__end)]
 
-    def difference(self, second_range: Range) -> list[Range] | None:
+    def difference(self, second_range: Range) -> list[Range] | int:
+        if self.__start == second_range.start and self.__end == second_range.end:
+            return 0
+
         difference_range = []
 
         if self.__start < second_range.start:

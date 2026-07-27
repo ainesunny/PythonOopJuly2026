@@ -1,62 +1,57 @@
-from typing import Any
-
-
 class Range:
-    def __init__(self, start: int, end: int) -> None:
+    def __init__(self, start: float, end: float) -> None:
         self.__start = start
         self.__end = end
 
     @property
-    def start(self) -> int:
+    def start(self) -> float:
         return self.__start
 
     @start.setter
-    def start(self, start: int) -> None:
+    def start(self, start: float) -> None:
         self.__start = start
 
     @property
-    def end(self) -> int:
+    def end(self) -> float:
         return self.__end
 
     @end.setter
-    def end(self, end: int) -> None:
+    def end(self, end: float) -> None:
         self.__end = end
 
-    def get_length(self) -> int:
+    @property
+    def length(self) -> float:
         return self.__end - self.__start
 
-    def is_inside(self, number: int) -> bool:
+    def is_inside(self, number: float) -> bool:
         return self.__start <= number <= self.__end
 
-    def intersection(self, second_range: Range) -> Range | None:
-        intersection_start = max(self.__start, second_range.start)
-        intersection_end = min(self.__end, second_range.end)
+    def get_intersection(self, other: Range) -> Range | None:
+        intersection_start = max(self.__start, other.__start)
+        intersection_end = min(self.__end, other.__end)
         return Range(intersection_start, intersection_end) if intersection_start < intersection_end else None
 
-    def union(self, second_range: Range) -> list[Range]:
-        if self.__start <= second_range.start:
-            left_range, right_range = self, second_range
+    def get_union(self, other: Range) -> list[Range]:
+        if self.__start <= other.__start:
+            left_range, right_range = self, other
         else:
-            left_range, right_range = second_range, self
+            left_range, right_range = other, self
 
-        if left_range.__end >= right_range.start:
+        if left_range.__end >= right_range.__start:
             return [Range(left_range.__start, max(left_range.__end, right_range.__end))]
         else:
-            return [Range(left_range.__start, left_range.__end), Range(right_range.start, right_range.__end)]
+            return [Range(left_range.__start, left_range.__end), Range(right_range.__start, right_range.__end)]
 
-    def difference(self, second_range: Range) -> list[Range] | int:
-        if self.__start == second_range.start and self.__end == second_range.end:
-            return 0
-
+    def get_difference(self, other: Range) -> list[Range]:
         difference_range = []
 
-        if self.__start < second_range.start:
-            difference_range.append(Range(self.__start, min(self.__end, second_range.start)))
+        if self.__start < other.__start:
+            difference_range.append(Range(self.__start, min(self.__end, other.__start)))
 
-        if self.__end > second_range.end:
-            difference_range.append(Range(max(self.__start, second_range.end), self.__end))
+        if self.__end > other.__end:
+            difference_range.append(Range(max(self.__start, other.__end), self.__end))
 
         return difference_range
 
-    def __str__(self) -> str:
-        return f"[{self.__start}, {self.__end}]"
+    def __repr__(self) -> str:
+        return f"({self.__start!r}, {self.__end!r})"

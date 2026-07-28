@@ -43,15 +43,15 @@ class Range:
             return [Range(left_range.__start, left_range.__end), Range(right_range.__start, right_range.__end)]
 
     def get_difference(self, other: Range) -> list[Range]:
-        difference_range = []
+        difference_ranges = []
 
         if self.__start < other.__start:
-            difference_range.append(Range(self.__start, min(self.__end, other.__start)))
+            difference_ranges.append(Range(self.__start, min(self.__end, other.__start)))
 
         if self.__end > other.__end:
-            difference_range.append(Range(max(self.__start, other.__end), self.__end))
+            difference_ranges.append(Range(max(self.__start, other.__end), self.__end))
 
-        return difference_range
+        return difference_ranges
 
     def __repr__(self) -> str:
         return f"({self.__start!r}, {self.__end!r})"

@@ -37,6 +37,6 @@ print(f"Объединенный интервал из двух указанны
 difference = range_1.get_difference(range_2)
 
 if len(difference) == 0:
-    print(f"Разность диапазонов (из первого вычитается второй) = 0")
+    print("Разность диапазонов (из первого вычитается второй) = 0")
 else:
     print(f"Разность диапазонов (из первого вычитается второй) {[element for element in difference]}")

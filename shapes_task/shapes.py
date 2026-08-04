@@ -47,6 +47,14 @@ class Square(Shape):
     def __repr__(self) -> str:
         return f"Квадрат со стороной {self.__side_length!r}"
 
+    def __eq__(self, other) -> bool:
+        if not isinstance(other, Square):
+            return NotImplemented
+        return self.__side_length == other.__side_length
+
+    def __hash__(self) -> int:
+        return hash(self.__side_length)
+
 
 class Triangle(Shape):
     def __init__(self, x1: float, y1: float, x2: float, y2: float, x3: float, y3: float) -> None:
@@ -125,6 +133,18 @@ class Triangle(Shape):
         return (f"Треугольник с координатами вершин ({self.__x1!r}, {self.__y1!r}); ({self.__x2!r}, {self.__y2!r}); "
                 f"({self.__x3!r}, {self.__y3!r})")
 
+    def __get_sorted_vertices_coordinates(self) -> tuple:
+        vertices_coordinates = [(self.__x1, self.__y1), (self.__x2, self.__y2), (self.__x3, self.__y3)]
+        return tuple(sorted(vertices_coordinates))
+
+    def __eq__(self, other) -> bool:
+        if not isinstance(other, Triangle):
+            return NotImplemented
+        return self.__get_sorted_vertices_coordinates() == other.__get_sorted_vertices_coordinates()
+
+    def __hash__(self) -> int:
+        return hash(self.__get_sorted_vertices_coordinates())
+
 
 class Rectangle(Shape):
     def __init__(self, side_a: float, side_b: float) -> None:
@@ -162,6 +182,18 @@ class Rectangle(Shape):
     def __repr__(self) -> str:
         return f"Прямоугольник со сторонами {self.__side_a!r} и {self.__side_b!r}"
 
+    def __get_sorted_sides(self) -> tuple:
+        sides = [self.__side_a, self.__side_b]
+        return tuple(sorted(sides))
+
+    def __eq__(self, other) -> bool:
+        if not isinstance(other, Rectangle):
+            return NotImplemented
+        return self.__get_sorted_sides() == other.__get_sorted_sides()
+
+    def __hash__(self) -> int:
+        return hash(self.__get_sorted_sides())
+
 
 class Circle(Shape):
     def __init__(self, radius: float) -> None:
@@ -189,3 +221,11 @@ class Circle(Shape):
 
     def __repr__(self) -> str:
         return f"Круг с радиусом {self.__radius!r}"
+
+    def __eq__(self, other) -> bool:
+        if not isinstance(other, Circle):
+            return NotImplemented
+        return self.__radius == other.__radius
+
+    def __hash__(self) -> int:
+        return hash(self.__radius)

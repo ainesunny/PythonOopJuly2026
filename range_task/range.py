@@ -1,3 +1,6 @@
+from typing import override
+
+
 class Range:
     def __init__(self, start: float, end: float) -> None:
         self.__start = start
@@ -53,5 +56,6 @@ class Range:
 
         return difference_ranges
 
+    @override
     def __repr__(self) -> str:
         return f"({self.__start!r}, {self.__end!r})"

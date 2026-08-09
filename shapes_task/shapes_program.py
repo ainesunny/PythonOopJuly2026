@@ -1,4 +1,8 @@
-from shapes import Shape, Square, Rectangle, Triangle, Circle
+from shape import Shape
+from square import Square
+from rectangle import Rectangle
+from triangle import Triangle
+from circle import Circle
 
 
 def get_max_area_shape(shapes_list: list[Shape]) -> Shape:

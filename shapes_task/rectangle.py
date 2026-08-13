@@ -3,50 +3,50 @@ from typing import override
 
 
 class Rectangle(Shape):
-    def __init__(self, first_rectangle_side: float, second_rectangle_side: float) -> None:
-        self.__first_rectangle_side = first_rectangle_side
-        self.__second_rectangle_side = second_rectangle_side
+    def __init__(self, width: float, height: float) -> None:
+        self.__width = width
+        self.__height = height
 
     @property
-    def first_rectangle_side(self) -> float:
-        return self.__first_rectangle_side
+    def width(self) -> float:
+        return self.__width
 
-    @first_rectangle_side.setter
-    def first_rectangle_side(self, first_rectangle_side: float) -> None:
-        self.__first_rectangle_side = first_rectangle_side
+    @width.setter
+    def width(self, width: float) -> None:
+        self.__width = width
 
     @property
-    def second_rectangle_side(self) -> float:
-        return self.__second_rectangle_side
+    def height(self) -> float:
+        return self.__height
 
-    @second_rectangle_side.setter
-    def second_rectangle_side(self, second_rectangle_side: float) -> None:
-        self.__second_rectangle_side = second_rectangle_side
+    @height.setter
+    def height(self, height: float) -> None:
+        self.__height = height
 
     def get_width(self) -> float:
-        return self.__first_rectangle_side
+        return self.__width
 
     def get_height(self) -> float:
-        return self.__second_rectangle_side
+        return self.__height
 
     def get_area(self) -> float:
-        return self.__first_rectangle_side * self.__second_rectangle_side
+        return self.__width * self.__height
 
     def get_perimeter(self) -> float:
-        return (self.__first_rectangle_side + self.__second_rectangle_side) * 2
+        return (self.__width + self.__height) * 2
 
     @override
     def __repr__(self) -> str:
-        return f"Прямоугольник со сторонами {self.__first_rectangle_side!r} и {self.__second_rectangle_side!r}"
+        return f"Прямоугольник со сторонами {self.__width!r} и {self.__height!r}"
 
     @override
-    def __eq__(self, other: Rectangle) -> bool:
+    def __eq__(self, other: object) -> bool:
         if not isinstance(other, Rectangle):
             return NotImplemented
 
-        return (self.__first_rectangle_side == other.__first_rectangle_side
-                and self.__second_rectangle_side == other.__second_rectangle_side)
+        return (self.__width == other.__width
+                and self.__height == other.__height)
 
     @override
     def __hash__(self) -> int:
-        return hash((self.__first_rectangle_side, self.__second_rectangle_side))
+        return hash((self.__width, self.__height))

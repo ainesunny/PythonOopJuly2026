@@ -71,14 +71,15 @@ class Triangle(Shape):
             ((self.__x2 - self.__x1) * (self.__y3 - self.__y1) - (self.__x3 - self.__x1) * (self.__y2 - self.__y1))) / 2
 
     @staticmethod
-    def get_side_length(x_first: float, y_first: float, x_second: float, y_second: float) -> float:
-        return math.sqrt((x_second - x_first) ** 2 + (y_second - y_first) ** 2)
+    def __get_side_length(x_1: float, y_1: float, x_2: float, y_2: float) -> float:
+        return math.sqrt((x_2 - x_1) ** 2 + (y_2 - y_1) ** 2)
 
     def get_perimeter(self) -> float:
-        first_triangle_side_length = self.get_side_length(self.__x1, self.__y1, self.__x2, self.__y2)
-        second_triangle_side_length = self.get_side_length(self.__x2, self.__y2, self.__x3, self.__y3)
-        third_triangle_side_length = self.get_side_length(self.__x3, self.__y3, self.__x1, self.__y1)
-        return first_triangle_side_length + second_triangle_side_length + third_triangle_side_length
+        side_1_length = self.__get_side_length(self.__x1, self.__y1, self.__x2, self.__y2)
+        side_2_length = self.__get_side_length(self.__x2, self.__y2, self.__x3, self.__y3)
+        side_3_length = self.__get_side_length(self.__x3, self.__y3, self.__x1, self.__y1)
+
+        return side_1_length + side_2_length + side_3_length
 
     @override
     def __repr__(self) -> str:
@@ -86,7 +87,7 @@ class Triangle(Shape):
                 f"({self.__x3!r}, {self.__y3!r})")
 
     @override
-    def __eq__(self, other: Triangle) -> bool:
+    def __eq__(self, other: object) -> bool:
         if not isinstance(other, Triangle):
             return NotImplemented
 

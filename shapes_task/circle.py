@@ -32,7 +32,7 @@ class Circle(Shape):
         return f"Круг с радиусом {self.__radius!r}"
 
     @override
-    def __eq__(self, other: Circle) -> bool:
+    def __eq__(self, other: object) -> bool:
         if not isinstance(other, Circle):
             return NotImplemented
 

@@ -31,7 +31,7 @@ class Square(Shape):
         return f"Квадрат со стороной {self.__side_length!r}"
 
     @override
-    def __eq__(self, other: Square) -> bool:
+    def __eq__(self, other: object) -> bool:
         if not isinstance(other, Square):
             return NotImplemented
 

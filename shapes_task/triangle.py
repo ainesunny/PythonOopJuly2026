@@ -60,12 +60,15 @@ class Triangle(Shape):
     def y3(self, y3: float) -> None:
         self.__y3 = y3
 
+    @override
     def get_width(self) -> float:
         return max(self.__x1, self.__x2, self.__x3) - min(self.__x1, self.__x2, self.__x3)
 
+    @override
     def get_height(self) -> float:
         return max(self.__y1, self.__y2, self.__y3) - min(self.__y1, self.__y2, self.__y3)
 
+    @override
     def get_area(self) -> float:
         return abs(
             ((self.__x2 - self.__x1) * (self.__y3 - self.__y1) - (self.__x3 - self.__x1) * (self.__y2 - self.__y1))) / 2
@@ -74,6 +77,7 @@ class Triangle(Shape):
     def __get_side_length(x_1: float, y_1: float, x_2: float, y_2: float) -> float:
         return math.sqrt((x_2 - x_1) ** 2 + (y_2 - y_1) ** 2)
 
+    @override
     def get_perimeter(self) -> float:
         side_1_length = self.__get_side_length(self.__x1, self.__y1, self.__x2, self.__y2)
         side_2_length = self.__get_side_length(self.__x2, self.__y2, self.__x3, self.__y3)

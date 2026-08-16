@@ -23,15 +23,19 @@ class Rectangle(Shape):
     def height(self, height: float) -> None:
         self.__height = height
 
+    @override
     def get_width(self) -> float:
         return self.__width
 
+    @override
     def get_height(self) -> float:
         return self.__height
 
+    @override
     def get_area(self) -> float:
         return self.__width * self.__height
 
+    @override
     def get_perimeter(self) -> float:
         return (self.__width + self.__height) * 2
 

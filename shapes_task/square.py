@@ -14,15 +14,19 @@ class Square(Shape):
     def side_length(self, side_length: float) -> None:
         self.__side_length = side_length
 
+    @override
     def get_width(self) -> float:
         return self.__side_length
 
+    @override
     def get_height(self) -> float:
         return self.__side_length
 
+    @override
     def get_area(self) -> float:
         return self.__side_length * self.__side_length
 
+    @override
     def get_perimeter(self) -> float:
         return self.__side_length * 4
 

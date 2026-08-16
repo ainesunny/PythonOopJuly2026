@@ -15,15 +15,19 @@ class Circle(Shape):
     def radius(self, radius: float) -> None:
         self.__radius = radius
 
+    @override
     def get_width(self) -> float:
         return self.__radius * 2
 
+    @override
     def get_height(self) -> float:
         return self.__radius * 2
 
+    @override
     def get_area(self) -> float:
         return math.pi * self.__radius * self.__radius
 
+    @override
     def get_perimeter(self) -> float:
         return 2 * math.pi * self.__radius
 
